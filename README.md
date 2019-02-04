@@ -1,5 +1,8 @@
 # D1 Mini / SSD1306 Example
 
+
+![D1 Mini](https://raw.githubusercontent.com/timopb/d1-qube/master/docs/d1-mini.jpg)
+
 This example demonstrates the following technologies:
 - Wemos 64x48 OLED Output via customized Adafruit SSD1306 driver (yay!)
 - OTA Update
