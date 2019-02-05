@@ -1,4 +1,4 @@
-# D1 Mini / SSD1306 Example (on steroids)
+# D1 Mini Pro / SSD1306 Example (on steroids)
 
 
 ![D1 Mini](https://raw.githubusercontent.com/timopb/d1-qube/master/docs/d1-mini.jpg)
