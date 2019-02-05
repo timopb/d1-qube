@@ -9,6 +9,6 @@ This example demonstrates the use of my customized Adafruit SSD1306 Driver as we
 - mDNS Client
 - HTTP API Server and HTML Webfrontend using ESP8266WebServer
 
-After you have flashed the firmware use a pc or mobile device to connect to the Wifi access point (ESP?????) the D1 will open. Configure the D1 to connect to your Wifi Infrastructure by providing a valid SSID and Password. 
+After you have flashed the firmware use a pc or mobile device to connect to the Wifi access point (ESP?????) provided by the D1. Open a browser and load a random page. The D1 will display the wifi configuration UI. Configure the D1 to connect to your wifi Infrastructure by providing a valid SSID and Password. 
 
 After rebooting the D1 it will connect to yoru Wifi and can be accessed from any device within your network. Use a browser to connect to the IP shown on the D1's display.
