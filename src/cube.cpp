@@ -31,17 +31,17 @@ void Cube::tick()
     p2y[i] = SCREEN_HEIGHT / 2 + ay * CUBE_SHAPE_SIZE / az;
   }
 
-  output.display->clearDisplay();
+  output.display.clearDisplay();
 
   for (int i=0;i<3;i++)
   {
-    output.display->drawLine(p2x[i],   p2y[i],   p2x[i+1], p2y[i+1], WHITE);
-    output.display->drawLine(p2x[i+4], p2y[i+4], p2x[i+5], p2y[i+5], WHITE);
-    output.display->drawLine(p2x[i],   p2y[i],   p2x[i+4], p2y[i+4], WHITE);
+    output.display.drawLine(p2x[i],   p2y[i],   p2x[i+1], p2y[i+1], WHITE);
+    output.display.drawLine(p2x[i+4], p2y[i+4], p2x[i+5], p2y[i+5], WHITE);
+    output.display.drawLine(p2x[i],   p2y[i],   p2x[i+4], p2y[i+4], WHITE);
   }
-  output.display->drawLine(p2x[3], p2y[3] ,p2x[0] ,p2y[0], WHITE);
-  output.display->drawLine(p2x[7], p2y[7] ,p2x[4] ,p2y[4], WHITE);
-  output.display->drawLine(p2x[3], p2y[3] ,p2x[7] ,p2y[7], WHITE);
+  output.display.drawLine(p2x[3], p2y[3] ,p2x[0] ,p2y[0], WHITE);
+  output.display.drawLine(p2x[7], p2y[7] ,p2x[4] ,p2y[4], WHITE);
+  output.display.drawLine(p2x[3], p2y[3] ,p2x[7] ,p2y[7], WHITE);
 
-  output.display->display();
+  output.display.display();
 }

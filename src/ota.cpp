@@ -3,29 +3,23 @@
 #include "output.h"
 #include "ota.h"
 
-void OTA::bluescreen(String message){
-  output.display->clearDisplay();
-  output.display->setCursor(0,0);
-  output.println(message);
-}
-
-void OTA::begin() {
+OTA::OTA() {
   ArduinoOTA.setPassword(OTA_PASSWORD);
   ArduinoOTA.onStart([]() {
   });
   ArduinoOTA.onEnd([]() {
-    output.display->setCursor(4,40);
+    output.display.setCursor(4,40);
     output.println("Rebooting!");
   });
   ArduinoOTA.onProgress([](unsigned int progress, unsigned int total) {
     char pg[5];
     sprintf(pg, "%u%%\r", (progress / (total / 100)));
-    output.display->clearDisplay();
-    output.display->setCursor(0,0);
-    output.display->setTextColor(BLACK, WHITE);
-    output.display->println("OTA Update");
-    output.display->setTextColor(WHITE);
-    output.display->setCursor(20,20);
+    output.display.clearDisplay();
+    output.display.setCursor(0,0);
+    output.display.setTextColor(BLACK, WHITE);
+    output.display.println("OTA Update");
+    output.display.setTextColor(WHITE);
+    output.display.setCursor(20,20);
     output.println(pg);
 #ifdef _DEBUG
     Serial.print(pg);
@@ -40,6 +34,12 @@ void OTA::begin() {
     else if (error == OTA_END_ERROR) bluescreen("End Failed");
   });
   ArduinoOTA.begin();
+}
+
+void OTA::bluescreen(String message){
+  output.display.clearDisplay();
+  output.display.setCursor(0,0);
+  output.println(message);
 }
 
 void OTA::tick() {

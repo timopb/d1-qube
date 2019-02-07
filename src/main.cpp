@@ -6,24 +6,23 @@
 #include <WiFiManager.h>
 
 #include "defs.h"
+#include "input.h"
 #include "output.h"
-#include "html.h"
 #include "ota.h"
 #include "cube.h"
 #include "httpd.h"
 #include "performer.h"
 
-#define DNS_NAME "d1-mini-pro"
-
 bool rotateCube = false;
 
 WiFiManager wifiManager;
 MDNSResponder mdns;
+
 OTA ota;
 Cube cube;
-HTTPD httpd;
-
 Performer performer;
+HTTPD httpd(&cube, &performer);
+Input input(&cube);
 
 void setup(){
 
@@ -42,20 +41,13 @@ void setup(){
     output.println("Ok");
   }
 
-  output.print("HTTPD...");
-  httpd.begin(&cube);
-  output.println("Ok");
-
-  output.print("OTA.....");
-  ota.begin();
-  output.println("Ok\n");
-
   output.splashScreen();
 }
 
 void loop(){
   ota.tick();
   httpd.tick();
+  input.tick();
   cube.tick();
   performer.tick();
 }

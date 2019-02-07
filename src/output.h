@@ -10,7 +10,7 @@ public:
   void println(String message);
   void print(String message);
   void splashScreen();
-  Adafruit_SSD1306 *display;
+  Adafruit_SSD1306 display = Adafruit_SSD1306(D0);
 };
 
 extern Output output;

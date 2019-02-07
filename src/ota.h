@@ -5,9 +5,8 @@
 
 class OTA {
 public:
-  OTA() {};
+  OTA();
   virtual ~OTA() {}
-  void begin();
   void tick();
 private:
   void bluescreen(String message);
