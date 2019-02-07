@@ -3,13 +3,7 @@
 #include "output.h"
 #include "ota.h"
 
-void OTA::bluescreen(String message){
-  output.display->clearDisplay();
-  output.display->setCursor(0,0);
-  output.println(message);
-}
-
-void OTA::begin() {
+OTA::OTA() {
   ArduinoOTA.setPassword(OTA_PASSWORD);
   ArduinoOTA.onStart([]() {
   });
@@ -40,6 +34,12 @@ void OTA::begin() {
     else if (error == OTA_END_ERROR) bluescreen("End Failed");
   });
   ArduinoOTA.begin();
+}
+
+void OTA::bluescreen(String message){
+  output.display->clearDisplay();
+  output.display->setCursor(0,0);
+  output.println(message);
 }
 
 void OTA::tick() {

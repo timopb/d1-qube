@@ -6,10 +6,10 @@ public:
   Performer();
   virtual ~Performer() {}
   void tick();
+  unsigned long tps;
 private:
-  int tickcount;
-  int tps;
-  int beat;
+  unsigned long tickcount;
+  unsigned long beat;
 };
 
 #endif

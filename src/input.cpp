@@ -1,6 +1,15 @@
+/*
+    Input handling demo utilizing the Wemos 1-Button Shield
+    and the Switch library by Albert van Dalen
+*/
 #include "Input.h"
 
-void Input::tick(Cube *cube)
+Input::Input(Cube *cubeRef)
+{
+    cube = cubeRef;
+}
+
+void Input::tick()
 {
     button.poll();
 

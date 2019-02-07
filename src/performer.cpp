@@ -2,6 +2,8 @@
 #include "defs.h"
 #include "performer.h"
 
+const unsigned long oneSecond = 1000;
+
 Performer::Performer() {
   tickcount = 0;
   tps = 0;
@@ -11,7 +13,7 @@ Performer::Performer() {
 void Performer::tick() {
   #ifdef _DEBUG
     tickcount++;
-    if (millis() > beat + 1000) {
+    if (millis() > beat + oneSecond) {
       beat = millis();
       tps = tickcount;
       tickcount = 0;

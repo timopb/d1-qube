@@ -1,28 +1,25 @@
-#include "html.h"
-#include "output.h"
 #include "httpd.h"
 
 extern "C" {
   #include <user_interface.h>
 }
 
-HTTPD::HTTPD() {
+HTTPD::HTTPD(Cube *cubeRef, Performer *performerRef) {
   server = new ESP8266WebServer(80);
-}
+  Pages *pages = new Pages();
 
-void HTTPD::begin(Cube *cube) {
-  server->on("/", [this]() {
-    server->send(200, "text/html", Page_Index());
+  server->on("/", [this, pages]() {
+    server->send(200, "text/html", pages->Index());
   });
-  server->on("/info", [this]() {
-    server->send(200, "text/html", Page_Memory());
+  server->on("/info", [this, pages, performerRef]() {
+    server->send(200, "text/html", pages->Info(performerRef));
   });
-  server->on("/api/rotate", [this, cube](){
-    cube->rotateCube = true;
+  server->on("/api/rotate", [this, cubeRef](){
+    cubeRef->rotateCube = true;
     server->send(200, "application/json", "{\"result\": \"rotating\"}");
   });
-  server->on("/api/stop", [this, cube]() {
-    cube->rotateCube = false;
+  server->on("/api/stop", [this, cubeRef]() {
+    cubeRef->rotateCube = false;
     server->send(200, "application/json", "{\"result\": \"stopped\"}");
   });
   server->on("/api/clear", [this]() {
@@ -38,8 +35,8 @@ void HTTPD::begin(Cube *cube) {
     system_update_cpu_freq(80);
     server->send(200, "application/json", "{\"result\": \"80\"}");
   });
-  server->onNotFound([this]() {
-    server->send(404, "text/html", Page_NotFound(server));
+  server->onNotFound([this, pages]() {
+    server->send(404, "text/html", pages->NotFound(server));
   });
   server->begin();
 }

@@ -9,12 +9,13 @@
 class Input
 {
   public:
-    Input() {}
+    Input(Cube *cubeRef);
     virtual ~Input() {}
     void begin();
-    void tick(Cube *cubeRef);
+    void tick();
   private:
     Switch button = Switch(D3);
+    Cube *cube;
 };
 
 #endif
