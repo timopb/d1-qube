@@ -6,6 +6,7 @@
 #include <WiFiManager.h>
 
 #include "defs.h"
+#include "input.h"
 #include "output.h"
 #include "html.h"
 #include "ota.h"
@@ -22,7 +23,7 @@ MDNSResponder mdns;
 OTA ota;
 Cube cube;
 HTTPD httpd;
-
+Input input;
 Performer performer;
 
 void setup(){
@@ -56,6 +57,7 @@ void setup(){
 void loop(){
   ota.tick();
   httpd.tick();
+  input.tick(&cube);
   cube.tick();
   performer.tick();
 }
